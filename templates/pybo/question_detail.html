@@ -236,54 +236,41 @@
 {% block script %}
 <script type='text/javascript'>
 $(document).ready(function(){
-
-    // Function to handle delete confirmation
     $(".delete").on('click', function() {
         if(confirm("정말로 삭제하시겠습니까?")) {
             location.href = $(this).data('uri');
+            alert("삭제 하였습니다.");
         }
     });
 
-    // Function to handle recommendation confirmation
     $(".recommend").on('click', function() {
         if(confirm("정말로 추천하시겠습니까?")) {
             location.href = $(this).data('uri');
         }
     });
 
-    // Function to handle pagination link clicks
     $(".page-link").on('click', function() {
-        if (!$(this).hasClass("disabled")) { // Check if the link is not disabled
-            // Disable pagination links to prevent multiple clicks
+        if (!$(this).hasClass("disabled")) {
             $(".page-link").addClass("disabled");
-            // Update form values
             $("#page").val($(this).data("page"));
             $("#searchForm").attr("action", $("#searchForm").attr("action") + "#qcomm");
-            // Submit the form
             $("#searchForm").submit();
         }
     });
 
-    // Function to handle search button click
     $("#btn_search").on('click', function() {
-        // Update form values
         $("#kw").val($(".kw").val());
-        $("#page").val(1);  // Reset page to 1
+        $("#page").val(1);
         $("#searchForm").attr("action", $("#searchForm").attr("action") + "#qcomm");
-        // Submit the form
         $("#searchForm").submit();
     });
 
-    // Function to handle sorting option change
     $(".so").on('change', function() {
-        // Update form values
         $("#so").val($(this).val());
-        $("#page").val(1); // Reset page to 1
+        $("#page").val(1);
         $("#searchForm").attr("action", $("#searchForm").attr("action") + "#qcomm");
-        // Submit the form
         $("#searchForm").submit();
     });
-
 });
 </script>
 {% endblock %}
